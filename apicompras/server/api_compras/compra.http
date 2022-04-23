@@ -1,0 +1,43 @@
+# Obter a lista de usuários
+GET http://localhost:3000/api/compras
+Content-Type: application/json
+###
+
+# Inserir novo usuário
+POST http://localhost:3000/api/compras
+Content-Type: application/json
+
+{
+ "sku": "NV105", 
+ "nome": "Arroz", 
+ "preco": 18.99,
+ "qtd": 3,
+ "dataHora": "2022-04-22T22:15:25.000Z",
+}
+
+# Alterar colaborador
+PUT http://localhost:3000/api/compras
+Content-Type: application/json
+
+{
+ "_id": "623e5fc6163dfa2d4e850f86",
+ "nome": "Jaqson alterado",
+ "email": "jaqson@teste.com",
+ "senha": "7777sadsada"
+}
+###
+
+# Excluir um colaborador
+DELETE http://localhost:3000/api/compras/623e5fc6163dfa2d4e850f86
+Content-Type: application/json
+###
+
+# Obter pelo id de colaborador
+GET http://localhost:3000/api/compras/623e5fc6163dfa2d4e850f86
+Content-Type: application/json
+###
+
+# Obter colaborador filtrando
+GET http://localhost:3000/api/compras/filtro/Jaqson Dalbosco
+Content-Type: application/json
+###
