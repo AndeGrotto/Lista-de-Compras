@@ -7,37 +7,40 @@ Content-Type: application/json
 POST http://localhost:3000/api/compras
 Content-Type: application/json
 
-{
- "sku": "NV105", 
+{ 
+ "codBarra": 1, 
  "nome": "Arroz", 
  "preco": 18.99,
  "qtd": 3,
- "dataHora": "2022-04-22T22:15:25.000Z",
+ "dataHora": "2022-04-22T22:15:25.000Z"
 }
+###
 
 # Alterar colaborador
 PUT http://localhost:3000/api/compras
 Content-Type: application/json
 
-{
- "_id": "623e5fc6163dfa2d4e850f86",
- "nome": "Jaqson alterado",
- "email": "jaqson@teste.com",
- "senha": "7777sadsada"
+{ 
+ "_id": "62672565b3d0c0be66abf918",
+ "codBarra": 222, 
+ "nome": "Feijão", 
+ "preco": 22.59,
+ "qtd": 10,
+ "dataHora": "2022-04-22T22:15:25.000Z"
 }
 ###
 
 # Excluir um colaborador
-DELETE http://localhost:3000/api/compras/623e5fc6163dfa2d4e850f86
+DELETE http://localhost:3000/api/compras/6267253b76e335b90700af3a
 Content-Type: application/json
 ###
 
 # Obter pelo id de colaborador
-GET http://localhost:3000/api/compras/623e5fc6163dfa2d4e850f86
+GET http://localhost:3000/api/compras/62672565b3d0c0be66abf918
 Content-Type: application/json
 ###
 
 # Obter colaborador filtrando
-GET http://localhost:3000/api/compras/filtro/Jaqson Dalbosco
+GET http://localhost:3000/api/compras/filtro/Fei
 Content-Type: application/json
 ###

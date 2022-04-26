@@ -1,0 +1,2 @@
+Ajeitar para não poder editar o cód de barras
+Pegar data e hora junto no campo

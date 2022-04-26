@@ -38,11 +38,11 @@ module.exports = {
     filtrar: async (req, res) => {
         Compra.find({
             $or: [
-                { sku: { $regex: req.params.filtro, $options: "i" } },
+                { codBarra: { $regex: req.params.filtro, $options: "i" } },
                 { nome: { $regex: req.params.filtro, $options: "i" } },
-                { preco: { $regex: req.params.filtro, $options: "i" } },
-                { qtd: { $regex: req.params.filtro, $options: "i" } },
-                { dataHora: { $regex: req.params.filtro, $options: "i" } },
+                //{ preco: { $regex: req.params.filtro, $options: "i" } },
+                //{ qtd: { $regex: req.params.filtro, $options: "i" } },
+                //{ dataHora: { $regex: req.params.filtro, $options: "i" } },
             ],
         }, function (err, objetos) {
             if (err)
