@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
-import "bootstrap/dist/css/bootstrap.min.css";
 import ComprasList from './ComprasList';
 import ComprasForm from './ComprasForm';
+
+import './App.css';
+import "bootstrap/dist/css/bootstrap.min.css";
+
+const apiURL = process.env.REACT_APP_API_URL;
+
 
 function Compras() {
     // Declare variaveis de state
