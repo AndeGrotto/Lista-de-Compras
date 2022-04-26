@@ -28,15 +28,15 @@ function ComprasList(props) {
                     {props.compras.length > 0 ? (props.compras.map((o, index) => (
                         <tr key={index}>
                             <td>{index}</td>
-                            <td>{o.codBarra}</td>
+                            <td>{o._codBarra}</td>
                             <td>{o.nome}</td>
                             <td>{o.preco}</td>
                             <td>{o.qtd}</td>
                             <td>{o.dataHora}</td>
                             <td>
-                                <button onClick={() => props.onClickEditar(o.codBarra)}
+                                <button onClick={() => props.onClickEditar(o._codBarra)}
                                     className="btn btn-warning btn-sm">Editar</button>
-                                <button onClick={() => props.onClickExcluir(o.codBarra)}
+                                <button onClick={() => props.onClickExcluir(o._codBarra)}
                                     className="btn btn-danger btn-sm">Excluir</button>
                             </td>
                         </tr>

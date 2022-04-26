@@ -13,8 +13,8 @@ function ComprasForm(props) {
             <form>
                 <div class="form-group">
                     <label>Código de Barras</label>
-                    <input class="form-control" type="text" name="codBarras"
-                        value={props.compra.codBarras} onChange={handleInputChange} />
+                    <input class="form-control" type="text" name="_codBarras"
+                        value={props.compra._codBarras} onChange={handleInputChange} />
                 </div>
                 <div class="form-group">
                     <label>Nome</label>

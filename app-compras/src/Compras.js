@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import ComprasList from './ComprasList';
 import ComprasForm from './ComprasForm';
+import CompraSrv from "./services/CompraSrv";
 
 import './App.css';
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -9,20 +10,19 @@ const apiURL = process.env.REACT_APP_API_URL;
 
 
 function Compras() {
-    // Declare variaveis de state
-    let comprasList = [
-        { codBarra: 22, nome: 'Batata', preco: 18.77, qtd: 3, dataHora: "22/05/2022" },
-        { codBarra: 55, nome: 'Manga', preco: 2.44, qtd: 2, dataHora: "25/04/2022" },
-    ]
-    const [compras, setCompras] = useState(comprasList)
+
+    const [compras, setCompras] = useState([])
+    useEffect(() => {
+        onClickAtualizar(); // ao inicializar execula método para atualizar
+    }, []);
 
     const onClickAtualizar = () => {
-        comprasList = [
-            { codBarra: 22, nome: 'Batata', preco: 18.77, qtd: 3, dataHora: "22/05/2022" },
-            { codBarra: 55, nome: 'Manga', preco: 2.44, qtd: 2, dataHora: "25/04/2022" },
-            { codBarra: 788, nome: 'Beterraba', preco: 51.00, qtd: 12, dataHora: "26/04/2022" }
-        ];
-        setCompras(comprasList);
+        CompraSrv.listar().then(response => {
+            setCompras(response.data);
+            console.log("Compras atualizadas");
+        }).catch(e => {
+            console.log("Erro: " + e.message);
+        });
     }
 
     // operação inserir
