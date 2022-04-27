@@ -1,2 +1,2 @@
 # Lista-de-Compras
-// Componentes: Anderson Grotto, Eduardo Mendes
+// Componentes: Anderson Grotto, José Eduardo Mendes
