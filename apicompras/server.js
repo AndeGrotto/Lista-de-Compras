@@ -17,8 +17,3 @@ require("./server/banco/mongo");
 // Usar as rotas
 const routes = require('./server/routes/index');
 app.use(routes);
-
-// Liberar origens para requisições
-var cors = require('cors');
-routes.use(cors({origin: '*'}));
-//routes.use(cors({origin: 'http://localhost:3001'}));

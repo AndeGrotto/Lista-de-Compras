@@ -1,2 +1,5 @@
 Ajeitar para não poder editar o cód de barras
 Pegar data e hora junto no campo
+Ajeitar confirmação de exclusão nos botoes
+Botao editar e excluir nao funciona
+colocar os filtros no formulario

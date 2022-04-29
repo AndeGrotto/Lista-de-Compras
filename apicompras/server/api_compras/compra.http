@@ -8,10 +8,10 @@ POST http://localhost:3000/api/compras
 Content-Type: application/json
 
 { 
- "codBarra": 1, 
- "nome": "Arroz", 
- "preco": 18.99,
- "qtd": 3,
+ "codBarra": 777777, 
+ "nome": "Feijaoo", 
+ "preco": 18.919,
+ "qtd": 23,
  "dataHora": "2022-04-22T22:15:25.000Z"
 }
 ###
@@ -31,7 +31,7 @@ Content-Type: application/json
 ###
 
 # Excluir um colaborador
-DELETE http://localhost:3000/api/compras/6267253b76e335b90700af3a
+DELETE http://localhost:3000/api/compras/626b5e6d05ed95b88107bec0
 Content-Type: application/json
 ###
 
