@@ -1,27 +1,91 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef, toastRef } from 'react';
+import CompraSrv from "./services/CompraSrv";
 import ComprasList from './ComprasList';
 import ComprasForm from './ComprasForm';
+
+import PrimeReact from 'primereact/api';
+import 'primereact/resources/themes/lara-light-indigo/theme.css';
+import 'primereact/resources/primereact.min.css';
+import 'primeicons/primeicons.css';
+import { Toast } from 'primereact/toast';
+
+
 
 import './App.css';
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function Compras() {
 
-    // Declare variaveis de state
-    let comprasList = [
-        { codBarra: 22, nome: 'Batata', preco: 18.77, qtd: 3, dataHora: "22/05/2022" },
-        { codBarra: 55, nome: 'Manga', preco: 2.44, qtd: 2, dataHora: "25/04/2022" },
-    ]
-    const [compras, setCompras] = useState(comprasList)
+    const apiURL = process.env.REACT_APP_API_URL;
 
+    const [compras, setCompras] = useState([])
+
+    const toastRef = useRef();
+
+    useEffect(() => {
+        onClickAtualizar(); // ao inicializar execula método para atualizar
+    }, []);
+
+
+    // Atualizar lista
     const onClickAtualizar = () => {
-        comprasList = [
-            { codBarra: 22, nome: 'Batata', preco: 18.77, qtd: 3, dataHora: "22/05/2022" },
-            { codBarra: 55, nome: 'Manga', preco: 2.44, qtd: 2, dataHora: "25/04/2022" },
-            { codBarra: 788, nome: 'Beterraba', preco: 51.00, qtd: 12, dataHora: "26/04/2022" }
-        ];
-        setCompras(comprasList);
+        CompraSrv.listar().then(response => {
+            setCompras(response.data);
+            toastRef.current.show({
+                severity: 'success',
+                summary: 'Compras atualizadas',
+                life: 2000
+            });
+        })
+            .catch(e => {
+                toastRef.current.show({
+                    severity: 'error',
+                    summary: e.message,
+                    life: 3000
+                });
+            });
     }
+
+    // operação salvar
+    const onClickSalvar = () => {
+        if (compra._id == null) { // inclussão
+            CompraSrv.incluir(compra).then(response => {
+                setEditando(false);
+                onClickAtualizar();
+                toastRef.current.show({ severity: 'success', summary: "Salvou", life: 2000 });
+            })
+                .catch(e => {
+                    toastRef.current.show({ severity: 'error', summary: e.message, life: 4000 });
+                });
+        } else { // alteração
+            CompraSrv.alterar(compra).then(response => {
+                setEditando(false);
+                onClickAtualizar();
+                toastRef.current.show({ severity: 'success', summary: "Salvou", life: 2000 });
+            })
+                .catch(e => {
+                    toastRef.current.show({ severity: 'error', summary: e.message, life: 4000 });
+                });
+        }
+    }
+
+    // operação excluir
+    const onClickExcluir = (codBarra) => {
+        CompraSrv.excluir(codBarra).then(response => {
+            onClickAtualizar();
+            toastRef.current.show({
+                severity: 'success',
+                summary: "Excluído", life: 2000
+            });
+        })
+            .catch(e => {
+                toastRef.current.show({
+                    severity: 'error',
+                    summary: e.message, life: 4000
+                });
+            });
+    }
+
 
     // operação inserir
     const initialState = { codBarra: null, nome: '', preco: '', qtd: '', dataHora: '' }
@@ -39,22 +103,6 @@ function Compras() {
         setEditando(true);
     }
 
-
-    // operação excluir
-    const onClickExcluir = (codBarra) => {
-        setCompras(compras.filter((compra) => compra.codBarra !== codBarra));
-    }
-
-    const onClickSalvar = () => {
-        console.log('Salvar ...');
-        if (compra.codBarra == null) { // inclussão
-            compra.codBarra = compras.length + 1
-            setCompras([...compras, compra])
-        } else { // alteração
-            setCompras(compras.map((find) => (find.codBarra === compra.codBarra ? compra : find)))
-        }
-        setEditando(false);
-    }
     const onClickCancelar = () => {
         console.log('Cancelou ...');
         setEditando(false);
@@ -63,6 +111,7 @@ function Compras() {
     if (!editando) {
         return (
             <div>
+                <Toast ref={toastRef} />
                 <ComprasList compras={compras}
                     onClickAtualizar={onClickAtualizar}
                     onClickInserir={onClickInserir}
@@ -73,6 +122,7 @@ function Compras() {
     } else {
         return (
             <div>
+                <Toast ref={toastRef} />
                 <ComprasForm compra={compra}
                     onClickSalvar={onClickSalvar}
                     onClickCancelar={onClickCancelar}

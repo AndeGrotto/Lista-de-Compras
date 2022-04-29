@@ -22,13 +22,13 @@ module.exports = {
         });
     },
     excluir: async (req, res) => {
-        Compra.deleteOne({ _id: req.params.id }, function (err) {
+        Compra.deleteOne({ codBarra: req.params.codBarra }, function (err) {
             (err ? res.status(400).send(err) : res.status(200).json("message:ok"));
         });
     },
 
-    obterPeloId: async (req, res) => {
-        Compra.findOne({ _id: req.params.id }, function (err, obj) {
+    obterPeloCodBarra: async (req, res) => {
+        Compra.findOne({ codBarra: req.params.codBarra }, function (err, obj) {
             if (err)
                 res.status(400).send(err);
             res.status(200).json(obj);

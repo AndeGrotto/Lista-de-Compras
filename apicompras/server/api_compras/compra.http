@@ -1,14 +1,14 @@
-# Obter a lista de usuários
+# Obter a lista de compras
 GET http://localhost:3000/api/compras
 Content-Type: application/json
 ###
 
-# Inserir novo usuário
+# Inserir nova compra
 POST http://localhost:3000/api/compras
 Content-Type: application/json
 
 { 
- "codBarra": 777777, 
+ "codBarra": 213123, 
  "nome": "Feijaoo", 
  "preco": 18.919,
  "qtd": 23,
@@ -16,7 +16,7 @@ Content-Type: application/json
 }
 ###
 
-# Alterar colaborador
+# Alterar compra
 PUT http://localhost:3000/api/compras
 Content-Type: application/json
 
@@ -30,17 +30,17 @@ Content-Type: application/json
 }
 ###
 
-# Excluir um colaborador
-DELETE http://localhost:3000/api/compras/626b5e6d05ed95b88107bec0
+# Excluir uma compra
+DELETE http://localhost:3000/api/compras/213123
 Content-Type: application/json
 ###
 
-# Obter pelo id de colaborador
-GET http://localhost:3000/api/compras/62672565b3d0c0be66abf918
+# Obter pelo cod de barras da compra
+GET http://localhost:3000/api/compras/1212
 Content-Type: application/json
 ###
 
-# Obter colaborador filtrando
+# Obter compra filtrando
 GET http://localhost:3000/api/compras/filtro/Fei
 Content-Type: application/json
 ###

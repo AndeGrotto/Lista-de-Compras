@@ -6,8 +6,8 @@ const controle = require('../controller/CompraCont');
 routes.route('/compras').get(controle.listar);
 routes.route('/compras').post(controle.incluir);
 routes.route('/compras').put(controle.alterar);
-routes.route('/compras/:id').delete(controle.excluir);
-routes.route('/compras/:id').get(controle.obterPeloId);
+routes.route('/compras/:codBarra').delete(controle.excluir);
+routes.route('/compras/:codBarra').get(controle.obterPeloCodBarra);
 routes.route('/compras/filtro/:filtro').get(controle.filtrar);
 
 module.exports = routes;
