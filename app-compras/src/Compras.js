@@ -8,6 +8,7 @@ import 'primereact/resources/themes/lara-light-indigo/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
 import { Toast } from 'primereact/toast';
+import { ConfirmDialog, confirmDialog } from 'primereact/confirmdialog';
 
 
 
@@ -70,7 +71,7 @@ function Compras() {
     }
 
     // operação excluir
-    const onClickExcluir = (codBarra) => {
+    const confirmExcluir = (codBarra) => {
         CompraSrv.excluir(codBarra).then(response => {
             onClickAtualizar();
             toastRef.current.show({
@@ -85,6 +86,18 @@ function Compras() {
                 });
             });
     }
+
+    const onClickExcluir = (codBarra) => {
+        confirmDialog({
+        message: 'Confirma a exclusão?',
+        header: 'Confirmação',
+        icon: 'pi pi-question',
+        acceptLabel:'Sim',
+        rejectLabel:'Não',
+        acceptClassName: 'p-button-danger',
+        accept: () => confirmExcluir(codBarra)
+        });
+        }
 
 
     // operação inserir
@@ -112,6 +125,7 @@ function Compras() {
         return (
             <div>
                 <Toast ref={toastRef} />
+                <ConfirmDialog/>
                 <ComprasList compras={compras}
                     onClickAtualizar={onClickAtualizar}
                     onClickInserir={onClickInserir}
